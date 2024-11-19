@@ -1,9 +1,7 @@
-package Nodes;
+package src;
+
 import java.util.ArrayList;
 import java.util.HashMap;
-
-
-import src.Example;
 
 public class DTTrainer {
     private String res1 = "en";

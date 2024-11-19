@@ -1,7 +1,8 @@
 package src;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Example {
+public class Example implements Serializable{
     private ArrayList<String> examples;
     private String language;
 

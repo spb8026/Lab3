@@ -1,7 +1,6 @@
-package Nodes;
-import java.util.ArrayList;
+package src;
 
-import src.Example;
+import java.util.ArrayList;
 
 public class DTLeafNode extends DTNode{
 
@@ -21,5 +20,14 @@ public class DTLeafNode extends DTNode{
         //    ex += ah.getLast();
         // }
         return str;
+   }
+   @Override
+   public boolean isLeaf()
+   {
+       return true;
+   }
+
+   public String getDecesion() {
+       return decesion;
    }
 }

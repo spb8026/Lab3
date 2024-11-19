@@ -1,9 +1,8 @@
-package Nodes;
+package src;
+
 import java.util.ArrayList;
 
-import src.Example;
-
-public class DTNode {
+public class DTNode implements java.io.Serializable{
     ArrayList<Example> examples;
     
     public DTNode(ArrayList<Example> examples)
@@ -14,5 +13,9 @@ public class DTNode {
     public String printTree(String indent) {
         // This method will be overridden in subclasses
         return "";
+    }
+    public boolean isLeaf()
+    {
+        return false;
     }
 }

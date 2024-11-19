@@ -1,7 +1,6 @@
-package Nodes;
-import java.util.ArrayList;
+package src;
 
-import src.Example;
+import java.util.ArrayList;
 
 public class DTMidNode extends DTNode {
     DTNode left;
@@ -25,6 +24,11 @@ public class DTMidNode extends DTNode {
         builder.append(indent).append("└─ Present:\n");
         builder.append(right.printTree(indent + "   "));
         return builder.toString();
+    }
+    @Override
+    public boolean isLeaf()
+    {
+        return false;
     }
     
 }
