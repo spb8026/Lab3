@@ -9,8 +9,8 @@
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}",
-            // "args": ["train","src/examples.dat","src/features.txt","hypoth1.txt","dt"]
-            "args": ["predict","src/examples.dat","src/features.txt","hypoth1.txt","dt"]
+            // "args": ["train","src/examples2.dat","src/features.txt","hypoth1.txt","dt"]
+            "args": ["predict","src/examples2.dat","src/features.txt","hypoth1.txt","dt"]
         },
         {
             "type": "java",
@@ -18,8 +18,8 @@
             "request": "launch",
             "mainClass": "src.lab3",
             "projectName": "Lab3_2227b07c",
-            // "args": ["train","src/examples.dat","src/features.txt","hypoth1.txt","dt"]
-            "args": ["predict","src/examples.dat","src/features.txt","hypoth1.txt","dt"]
+            // "args": ["train","src/examples2.dat","src/features.txt","hypoth1.txt","dt"]
+            "args": ["predict","src/examples2.dat","src/features.txt","hypoth1.txt","dt"]
 
         }
     ]

@@ -23,7 +23,7 @@ public class DTTrainer {
         }
         for (String curWord: ex.getExamples())
         {
-            if (curWord.contains(word))
+            if (curWord.equals(word))
             {
                 wordPresenceCache.put(cacheKey, true);
                 return true;

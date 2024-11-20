@@ -66,7 +66,7 @@ public static void learnDT(ArrayList<Example> examples, ArrayList<String> featur
 public static void learnAda(ArrayList<Example> examples, ArrayList<String> features, String hypothFile) throws IOException
 {
     ADALearner ada = new ADALearner();
-    Adaboost mod = ada.adaboost(examples, 5, features);
+    Adaboost mod = ada.adaboost(examples, 100, features);
     FileOutputStream file = new FileOutputStream(hypothFile);
     ObjectOutputStream out = new ObjectOutputStream(file);
     out.writeObject(mod);
@@ -87,6 +87,8 @@ public static void learnAda(ArrayList<Example> examples, ArrayList<String> featu
                 
                 
     public static void main(String[] args) throws IOException {
+        DataExtractor dt = new DataExtractor();
+        dt.createExamples();
         String mode = args[0];
         String exampleFile = args[1];
         String featureFile = args[2];
