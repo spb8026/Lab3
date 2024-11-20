@@ -1,4 +1,4 @@
-package src;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -11,6 +11,14 @@ import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import src.ADALearner;
+import src.Adaboost;
+import src.DTExecutor;
+import src.DTNode;
+import src.DTTrainer;
+import src.Example;
+import src.Model;
 
 
 public class lab3 {
@@ -87,8 +95,8 @@ public static void learnAda(ArrayList<Example> examples, ArrayList<String> featu
                 
                 
     public static void main(String[] args) throws IOException {
-        DataExtractor dt = new DataExtractor();
-        dt.createExamples();
+        // DataExtractor dt = new DataExtractor();
+        // dt.createExamples();
         String mode = args[0];
         String exampleFile = args[1];
         String featureFile = args[2];

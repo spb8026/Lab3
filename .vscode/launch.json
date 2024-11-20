@@ -6,11 +6,23 @@
     "configurations": [
         {
             "type": "java",
+            "name": "lab3",
+            "request": "launch",
+            "mainClass": "lab3",
+            "projectName": "Lab3_2227b07c"
+        },
+        {
+            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}",
-            // "args": ["train","src/examples2.dat","src/features.txt","hypoth1.txt","dt"]
-            "args": ["predict","src/examples2.dat","src/features.txt","hypoth1.txt","dt"]
+            "args": [
+                "predict",
+                "src/examples2.dat",
+                "src/features.txt",
+                "hypoth1.txt",
+                "dt"
+            ]
         },
         {
             "type": "java",
@@ -18,9 +30,13 @@
             "request": "launch",
             "mainClass": "src.lab3",
             "projectName": "Lab3_2227b07c",
-            // "args": ["train","src/examples2.dat","src/features.txt","hypoth1.txt","dt"]
-            "args": ["predict","src/examples2.dat","src/features.txt","hypoth1.txt","dt"]
-
+            "args": [
+                "predict",
+                "src/examples2.dat",
+                "src/features.txt",
+                "hypoth1.txt",
+                "dt"
+            ]
         }
     ]
 }
