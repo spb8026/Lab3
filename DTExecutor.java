@@ -1,5 +1,3 @@
-package src;
-
 import java.util.ArrayList;
 
 public class DTExecutor extends Model{
@@ -47,16 +45,11 @@ public class DTExecutor extends Model{
         return res;
     }
 
-    public double runTestData(ArrayList<Example> examples)
+    public void runTestData(ArrayList<Example> examples)
     {
-        int correct = 0;
-        int incorrect = 0;
         for (Example ex: examples)
         {
             String dec = runExample(ex);
-            if (dec.equals(ex.getLanguage())) correct += 1;
-            else incorrect += 1;
         }
-        return correct;
     }
 }

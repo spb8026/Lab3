@@ -1,4 +1,3 @@
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -12,17 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import src.ADALearner;
-import src.Adaboost;
-import src.DTExecutor;
-import src.DTNode;
-import src.DTTrainer;
-import src.Example;
-import src.Model;
-
 
 public class lab3 {
-public static ArrayList<Example> loadExamples(String fName) {
+public static ArrayList<Example> loadExampleswithLabel(String fName) {
     ArrayList<Example> examples = new ArrayList<>();
     try {
         Scanner scanner = new Scanner(new File(fName));
@@ -46,7 +37,25 @@ public static ArrayList<Example> loadExamples(String fName) {
         e.printStackTrace();
     }
     return examples;
+}
+
+public static ArrayList<Example> loadExamples(String fName) {
+    ArrayList<Example> examples = new ArrayList<>();
+    try {
+        Scanner scanner = new Scanner(new File(fName));
+        while (scanner.hasNextLine()) {
+            String[] parts = scanner.nextLine().split(" ");
+            ArrayList<String> features = new ArrayList<>(List.of(parts)); // Extract features separated by spaces
+
+            examples.add(new Example(features, "unknown"));
+        }
+        scanner.close(); // Close scanner to avoid resource leak
+    } catch (FileNotFoundException e) {
+        System.err.println("File not found: " + fName);
+        e.printStackTrace();
     }
+    return examples;
+}
 
     
         public static ArrayList<String> loadFeatures(String fName) throws FileNotFoundException
@@ -107,7 +116,7 @@ public static void learnAda(ArrayList<Example> examples, ArrayList<String> featu
             if (learningType.equals("dt"))
             {
                 try {
-                    ArrayList<Example> examples = loadExamples(exampleFile);
+                    ArrayList<Example> examples = loadExampleswithLabel(exampleFile);
                     ArrayList<String> features = loadFeatures(featureFile);
                     learnDT(examples,features,hypothFile);
                 } catch (Exception e) {
@@ -132,7 +141,7 @@ public static void learnAda(ArrayList<Example> examples, ArrayList<String> featu
                 Model mod = loadModel(hypothFile);
                 ArrayList<Example> examples = loadExamples(exampleFile);
                 ArrayList<String> features = loadFeatures(featureFile);
-                System.out.println(mod.runTestData(examples));
+                mod.runTestData(examples);
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();

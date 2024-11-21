@@ -1,4 +1,3 @@
-package src;
 
 import java.util.ArrayList;
 
@@ -31,17 +30,12 @@ public class Adaboost extends Model {
     }
 
     @Override
-    public double runTestData(ArrayList<Example> examples) {
-        double correct = 0;
-        double incorrect = 0;
+    public void runTestData(ArrayList<Example> examples) {
         for (Example ex: examples)
         {
             String res = runAda(ex.getExamples());
             System.out.println(res);
-            if (res.equals(ex.getLanguage())) correct += 1;
-            else incorrect += 1;
         }
-        return correct;
     }
     
 }
