@@ -58,33 +58,36 @@ public static ArrayList<Example> loadExamples(String fName) {
 }
 
     
-        public static ArrayList<String> loadFeatures(String fName) throws FileNotFoundException
-                {
-                    Scanner scanner = new Scanner(new File(fName));
-                    ArrayList<String> features = new ArrayList<>();
-                    while (scanner.hasNext())
-                    {
-                        features.add(scanner.next());
-                    }
-                    scanner.close();;
-                    return features;
-                }
+public static ArrayList<String> loadFeatures(String fName) throws FileNotFoundException
+{
+    Scanner scanner = new Scanner(new File(fName));
+    ArrayList<String> features = new ArrayList<>();
+    while (scanner.hasNext())
+    {
+        features.add(scanner.next());
+    }
+    scanner.close();;
+    return features;
+}
+
 public static void learnDT(ArrayList<Example> examples, ArrayList<String> features, String hypothFile) throws IOException
     {
     DTTrainer dtTrain = new DTTrainer();
     DTNode root = dtTrain.DTL(examples, features, new DTNode(examples), 0);
     Model mod = new DTExecutor(root);
-    FileOutputStream file = new FileOutputStream(hypothFile);
+    FileOutputStream file = new FileOutputStream(hypothFile + ".model");
     ObjectOutputStream out = new ObjectOutputStream(file);
     out.writeObject(mod);
     out.close();
     file.close();
     }
+
+    
 public static void learnAda(ArrayList<Example> examples, ArrayList<String> features, String hypothFile) throws IOException
 {
     ADALearner ada = new ADALearner();
     Adaboost mod = ada.adaboost(examples, 100, features);
-    FileOutputStream file = new FileOutputStream(hypothFile);
+    FileOutputStream file = new FileOutputStream(hypothFile + ".model");
     ObjectOutputStream out = new ObjectOutputStream(file);
     out.writeObject(mod);
     out.close();
