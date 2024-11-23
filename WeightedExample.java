@@ -1,7 +1,7 @@
 
 import java.util.ArrayList;
 
-public class WeightedExample extends Example {
+public class WeightedExample extends Example  {
 
     private double weight;
 

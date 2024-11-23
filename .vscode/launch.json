@@ -6,19 +6,25 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Current File",
-            "request": "launch",
-            "mainClass": "${file}"
-        },
-        {
-            "type": "java",
             "name": "lab3",
             "request": "launch",
-            "mainClass": "src.lab3",
+            "mainClass": "lab3",
             "projectName": "Lab3_2227b07c",
-            // "args": ["train", "src/xorLabel.dat", "src/xorFeatures.txt", "xor.txt", "dt"],
-            "args": ["predict", "src/xorNoLabel.dat", "src/xorFeatures.txt", "src/xor.txt", "dt"]
-
+            "args": [
+                "train",
+                "examples2.dat",
+                "features.txt",
+                "bestada.model",
+                "ada"
+            ]
+            // "args": [
+            //     "predict",
+            //     "examples2.dat",
+            //     "features.txt",
+            //     "best.model",
+            //     "ada"
+            // ]
+            
         }
     ]
 }

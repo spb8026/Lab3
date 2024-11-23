@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 
 public class DTExecutor extends Model{
+    private static final long serialVersionUID = 1L;
+    
     public DTNode rootNode;
 
     public DTExecutor(DTNode root)

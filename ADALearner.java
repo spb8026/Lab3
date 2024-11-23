@@ -17,6 +17,13 @@ public class ADALearner {
         {
             DecesionStump curStump = DSTrainer.trainDecisionStump(wExamples,features);
             double err = curStump.calculateError(wExamples);
+            if (err == 0) {
+                err = 1e-10; // Small positive number
+            }
+            if (err >= 1) {
+                err = 1 - 1e-10; // Slightly less than 1
+            }
+            
             
             double weightChange = err/(1-err);
             for (WeightedExample ex: wExamples)
@@ -34,7 +41,7 @@ public class ADALearner {
                 ex.setWeight(ex.getWeight() / totalWeight);
             }
             
-            curStump.setWeight(.5*Math.log(weightChange));
+            curStump.setWeight(.5*Math.log((1-err)/err));
             H.add(curStump);
         }
         return new Adaboost(H);

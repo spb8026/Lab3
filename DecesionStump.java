@@ -2,7 +2,7 @@
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class DecesionStump implements Serializable{
+public class DecesionStump implements Serializable {
     private String feature;
     private String presentResult;
     private String notPresentResult;

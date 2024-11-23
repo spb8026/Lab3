@@ -6,7 +6,7 @@ public class Example implements Serializable{
     private ArrayList<String> examples;
     private String language;
 
-    public Example(ArrayList<String> examples, String lang)
+    public Example(ArrayList<String> examples, String lang) 
     {
         this.examples = examples;
         this.language = lang;

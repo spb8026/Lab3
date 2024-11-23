@@ -2,7 +2,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileInputStream;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -75,7 +74,7 @@ public static void learnDT(ArrayList<Example> examples, ArrayList<String> featur
     DTTrainer dtTrain = new DTTrainer();
     DTNode root = dtTrain.DTL(examples, features, new DTNode(examples), 0);
     Model mod = new DTExecutor(root);
-    FileOutputStream file = new FileOutputStream(hypothFile + ".model");
+    FileOutputStream file = new FileOutputStream(hypothFile);
     ObjectOutputStream out = new ObjectOutputStream(file);
     out.writeObject(mod);
     out.close();
@@ -86,8 +85,8 @@ public static void learnDT(ArrayList<Example> examples, ArrayList<String> featur
 public static void learnAda(ArrayList<Example> examples, ArrayList<String> features, String hypothFile) throws IOException
 {
     ADALearner ada = new ADALearner();
-    Adaboost mod = ada.adaboost(examples, 100, features);
-    FileOutputStream file = new FileOutputStream(hypothFile + ".model");
+    Adaboost mod = ada.adaboost(examples, 10, features);
+    FileOutputStream file = new FileOutputStream(hypothFile);
     ObjectOutputStream out = new ObjectOutputStream(file);
     out.writeObject(mod);
     out.close();
@@ -113,7 +112,8 @@ public static void learnAda(ArrayList<Example> examples, ArrayList<String> featu
         String exampleFile = args[1];
         String featureFile = args[2];
         String hypothFile = args[3];
-        if (mode.equals("train"))
+        boolean what = mode.equals("train");
+        if (what)
         {
             String learningType = args[4];
             if (learningType.equals("dt"))
@@ -123,12 +123,12 @@ public static void learnAda(ArrayList<Example> examples, ArrayList<String> featu
                     ArrayList<String> features = loadFeatures(featureFile);
                     learnDT(examples,features,hypothFile);
                 } catch (Exception e) {
-                    // TODO: handle exception
+                    e.printStackTrace();
                 }
             }
-            else if (learningType.equals("ad"))
+            else if (learningType.equals("ada"))
             {
-                ArrayList<Example> examples = loadExamples(exampleFile);
+                ArrayList<Example> examples = loadExampleswithLabel(exampleFile);
                 try {
                     ArrayList<String> features = loadFeatures(featureFile);
                     learnAda(examples, features, hypothFile);
@@ -152,10 +152,7 @@ public static void learnAda(ArrayList<Example> examples, ArrayList<String> featu
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
+        }
     }
-
-
-
-     }
 
 }

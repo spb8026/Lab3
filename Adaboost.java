@@ -2,6 +2,8 @@
 import java.util.ArrayList;
 
 public class Adaboost extends Model {
+    private static final long serialVersionUID = 1L;
+    
     ArrayList<DecesionStump> hypothesis;
     
     public Adaboost (ArrayList<DecesionStump> hypothesis)

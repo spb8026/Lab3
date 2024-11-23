@@ -5,7 +5,7 @@ import java.util.HashMap;
 public class DTTrainer {
     private String res1 = "en";
     private String res2 = "nl";
-    private int maxDepth = 10;
+    private int maxDepth = 20;
     private HashMap<String, Boolean> wordPresenceCache = new HashMap<>();
 
     private String createCacheKey(Example ex, String word) {
@@ -16,9 +16,9 @@ public class DTTrainer {
     private boolean wordPresent(Example ex, String word)
     {
         String cacheKey = createCacheKey(ex, word);
-        if (wordPresenceCache.containsKey(word))
+        if (wordPresenceCache.containsKey(cacheKey))
         {
-            return wordPresenceCache.get(word);
+            return wordPresenceCache.get(cacheKey);
         }
         for (String curWord: ex.getExamples())
         {
@@ -75,7 +75,7 @@ public class DTTrainer {
             int subNotPresentDut = 0;
             for (Example ex: examples)
             {
-                if (ex.getLanguage().equals(res1))
+                if (ex.getLanguage().contains(res1))
                 {
                     boolean subPres = wordPresent(ex, attributes.get(i));
                     if (subPres) subPresentEngl += 1;
