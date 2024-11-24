@@ -18,10 +18,10 @@ public class ADALearner {
             DecesionStump curStump = DSTrainer.trainDecisionStump(wExamples,features);
             double err = curStump.calculateError(wExamples);
             if (err == 0) {
-                err = 1e-10; // Small positive number
+                err = 1e-10;
             }
             if (err >= 1) {
-                err = 1 - 1e-10; // Slightly less than 1
+                err = 1 - 1e-10;
             }
             
             

@@ -10,7 +10,6 @@ public class DTNode implements java.io.Serializable{
     }
 
     public String printTree(String indent) {
-        // This method will be overridden in subclasses
         return "";
     }
     public boolean isLeaf()

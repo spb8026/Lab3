@@ -1,0 +1,36 @@
+To start to use my code,  new raw data can be created using the fetch_dutch_wiki and 
+fetch_eng_wiki python scripts to generate clean data from randomized wikiapedia articles. 
+The DataExtractor class can then be used to convert the raw data into
+training and testing data. I would uncomment and change the hardcoded files to create this data.
+From here lab3 can be used to train either a decesion tree or adaboost 
+model on the data and create a serizlized model object of either the decesion tree 
+or adaboost model. These models can be tested using the lab3 test command and labeled data, or 
+they can be used with the predict command and unlabled data.
+
+For my fetures I used 3 english function words and 2 dutch function words, that being "the",
+ "and", "is", "de", and "een".
+
+To test my decesion tree models I tried levels of 2-6 and got the following results:
+Level 2 Model Accuracy: 0.9180024660912454
+Level 3 Model Accuracy: 0.38655980271270035
+Level 4 Model Accuracy: 0.9217016029593095
+Level 5 Model Accuracy: 0.9186189889025894
+Level 6 Model Accuracy: 0.9186189889025894
+
+Due to only using 5 attributes for my models, after a level of 5 there was no change in 
+decesion tree accuracy, from this data I deceided to stick to a 4 levels for my tree. 
+
+I used the exact boosting algorithim from the slides. To train each indivual stump, I find the feature 
+and "vote" that produce the least amount of error and use that as my next stump. I trained models on
+K values of 2,3,4,5 and 10, and got the following results:
+
+K-2 Model Accuracy: 0.7447595561035758
+K-3 Model Accuracy: 0.9124537607891492
+K-4 Model Accuracy: 0.9124537607891492
+K-5 Model Accuracy: 0.9124537607891492
+K-10 Model Accuracy:0.9124537607891492
+
+I found that after 3 stumps I saw no increase in accuracy for these specific features on this test data. 
+
+For all models they were trained on around 9,500 examples from 200 english and 200 dutch random wiki
+articles and tested on 1600 examples from around 50 random english and dutch articles.

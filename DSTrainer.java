@@ -9,9 +9,7 @@ public class DSTrainer {
         DecesionStump bestStump = null;
         double minError = Double.MAX_VALUE;
 
-        // Try using each word as a decision attribute
         for (String word : features) {
-            // Create two stumps: one for classifying as English if word is found, and vice versa
             DecesionStump stumpEnglish = new DecesionStump(word, "en", "nl");
             DecesionStump stumpDutch = new DecesionStump(word, "nl", "en");
 

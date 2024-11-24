@@ -5,7 +5,7 @@ import java.util.HashMap;
 public class DTTrainer {
     private String res1 = "en";
     private String res2 = "nl";
-    private int maxDepth = 20;
+    private int maxDepth = 6;
     private HashMap<String, Boolean> wordPresenceCache = new HashMap<>();
 
     private String createCacheKey(Example ex, String word) {
@@ -20,13 +20,15 @@ public class DTTrainer {
         {
             return wordPresenceCache.get(cacheKey);
         }
-        for (String curWord: ex.getExamples())
+        String fullSentence = "";
+        for (String wrd: ex.getExamples())
         {
-            if (curWord.equals(word))
-            {
-                wordPresenceCache.put(cacheKey, true);
-                return true;
-            } 
+            fullSentence += wrd + " ";
+        }
+        if (fullSentence.contains(word))
+        {
+            wordPresenceCache.put(cacheKey, true);
+            return true;
         }
         wordPresenceCache.put(cacheKey, false);
         return false;

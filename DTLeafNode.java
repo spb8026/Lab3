@@ -13,11 +13,6 @@ public class DTLeafNode extends DTNode{
 
     public String printTree(String indent) {
         String str = indent + "Leaf (Classification: " + decesion + ")\n";
-        // String ex = "";
-        // for (ArrayList<String> ah: examples)
-        // {
-        //    ex += ah.getLast();
-        // }
         return str;
    }
    @Override

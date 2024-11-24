@@ -19,18 +19,16 @@ public static ArrayList<Example> loadExampleswithLabel(String fName) {
         while (scanner.hasNextLine()) {
             String[] parts = scanner.nextLine().split("\\|");
             
-            // Ensure the split results in at least two parts (language + features)
             if (parts.length < 2) {
                 System.err.println("Invalid line format, skipping: " + parts[0]);
                 continue;
             }
 
-            String lang = parts[0].trim(); // Extract the language
-            ArrayList<String> features = new ArrayList<>(List.of(parts[1].trim().split(" "))); // Extract features separated by spaces
-
+            String lang = parts[0].trim();
+            ArrayList<String> features = new ArrayList<>(List.of(parts[1].trim().split(" "))); 
             examples.add(new Example(features, lang));
         }
-        scanner.close(); // Close scanner to avoid resource leak
+        scanner.close(); 
     } catch (FileNotFoundException e) {
         System.err.println("File not found: " + fName);
         e.printStackTrace();
@@ -44,11 +42,10 @@ public static ArrayList<Example> loadExamples(String fName) {
         Scanner scanner = new Scanner(new File(fName));
         while (scanner.hasNextLine()) {
             String[] parts = scanner.nextLine().split(" ");
-            ArrayList<String> features = new ArrayList<>(List.of(parts)); // Extract features separated by spaces
-
+            ArrayList<String> features = new ArrayList<>(List.of(parts));
             examples.add(new Example(features, "unknown"));
         }
-        scanner.close(); // Close scanner to avoid resource leak
+        scanner.close(); 
     } catch (FileNotFoundException e) {
         System.err.println("File not found: " + fName);
         e.printStackTrace();
@@ -85,7 +82,7 @@ public static void learnDT(ArrayList<Example> examples, ArrayList<String> featur
 public static void learnAda(ArrayList<Example> examples, ArrayList<String> features, String hypothFile) throws IOException
 {
     ADALearner ada = new ADALearner();
-    Adaboost mod = ada.adaboost(examples, 10, features);
+    Adaboost mod = ada.adaboost(examples, 4, features);
     FileOutputStream file = new FileOutputStream(hypothFile);
     ObjectOutputStream out = new ObjectOutputStream(file);
     out.writeObject(mod);
@@ -106,8 +103,6 @@ public static void learnAda(ArrayList<Example> examples, ArrayList<String> featu
                 
                 
     public static void main(String[] args) throws IOException {
-        // DataExtractor dt = new DataExtractor();
-        // dt.createExamples();
         String mode = args[0];
         String exampleFile = args[1];
         String featureFile = args[2];
@@ -145,9 +140,18 @@ public static void learnAda(ArrayList<Example> examples, ArrayList<String> featu
                 ArrayList<Example> examples = loadExamples(exampleFile);
                 ArrayList<String> features = loadFeatures(featureFile);
                 mod.runTestData(examples);
-            } catch (IOException e) {
+            } catch (Exception e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
+            }
+        }
+        else if (mode.equals("test"))
+        {
+            try {
+                Model mod = loadModel(hypothFile);
+                ArrayList<Example> examples = loadExampleswithLabel(exampleFile);
+                ArrayList<String> features = loadFeatures(featureFile);
+                mod.testModel(examples);
             } catch (Exception e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();

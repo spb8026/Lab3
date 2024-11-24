@@ -39,5 +39,16 @@ public class Adaboost extends Model {
             System.out.println(res);
         }
     }
+
+    @Override
+    public void testModel(ArrayList<Example> examples) {
+        double correct = 0;
+        for (Example ex: examples)
+        {
+            String res = runAda(ex.getExamples());
+            if (res.equals(ex.getLanguage())) correct += 1;
+        }
+        System.out.println("Model Accuracy:" + correct/examples.size());
+    }
     
 }

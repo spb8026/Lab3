@@ -6,25 +6,24 @@
     "configurations": [
         {
             "type": "java",
+            "name": "DataExtractor",
+            "request": "launch",
+            "mainClass": "DataExtractor",
+            "projectName": "Lab3_2227b07c"
+        },
+        {
+            "type": "java",
             "name": "lab3",
             "request": "launch",
             "mainClass": "lab3",
             "projectName": "Lab3_2227b07c",
             "args": [
-                "train",
-                "examples2.dat",
+                "test",
+                "rawData/test.dat",
                 "features.txt",
-                "bestada.model",
+                "ada4.model",
                 "ada"
             ]
-            // "args": [
-            //     "predict",
-            //     "examples2.dat",
-            //     "features.txt",
-            //     "best.model",
-            //     "ada"
-            // ]
-            
         }
     ]
 }

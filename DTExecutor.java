@@ -12,13 +12,14 @@ public class DTExecutor extends Model{
 
     private boolean wordPresent(Example ex, String word)
     {
-   
-        for (String curWord: ex.getExamples())
+        String fullSentence = "";
+        for (String wrd: ex.getExamples())
         {
-            if (curWord.contains(word))
-            {
-                return true;
-            } 
+            fullSentence += wrd + " ";
+        }
+        if (fullSentence.contains(word))
+        {
+            return true;
         }
         return false;
     }
@@ -53,5 +54,16 @@ public class DTExecutor extends Model{
         {
             String dec = runExample(ex);
         }
+    }
+
+    @Override
+    public void testModel(ArrayList<Example> examples) {
+        double correct = 0;
+        for (Example ex: examples)
+        {
+            String res = runExample(ex);
+            if (res.equals(ex.getLanguage())) correct += 1.0;
+        }
+        System.out.println("Model Accuracy:" + correct/(double)examples.size());
     }
 }
